@@ -29,6 +29,6 @@ public class VkontakteConfig {
 
     @Bean
     public long vkGroupId() {
-        return groupId;
+        return -groupId;
     }
 }
