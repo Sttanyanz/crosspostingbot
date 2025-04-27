@@ -13,6 +13,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class Bot extends TelegramLongPollingBot {
 
+    @Value("${bot.target-channel}")
+    private String channelId;
     private final VkontakteService vkontakteService;
 
     public Bot(@Value("${bot.token}") String token, VkontakteService vkontakteService) {
@@ -22,15 +24,25 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        String text = update.getMessage().getText();
         try {
-            vkontakteService.postToGroup(update.getMessage().getText());
-        } catch (ClientException | ApiException e) {
-            throw new RuntimeException(e);
+            vkontakteService.postToGroup(text);
+            sendToChannel(channelId, text);
+        } catch (ClientException | ApiException | TelegramApiException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
     public String getBotUsername() {
         return "oxpostbot";
+    }
+
+    public void sendToChannel(String channelId, String text) throws TelegramApiException {
+        SendMessage message = new SendMessage();
+        message.setChatId(channelId);
+        message.setText(text);
+
+        execute(message);
     }
 }
