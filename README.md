@@ -1,46 +1,40 @@
 # Crossposting Bot
 
-Телеграм-бот, который может пересылать посты в другие Телеграм-каналы и группы Вконтакте.
+Telegram bot that can forward posts to other Telegram channels and VKontakte groups.
 
-## Установка
+## Installation
 
-1. **Клонируйте репозиторий:**
+1. **Clone the repository:**
 
    ```bash
    git clone https://github.com/Sttanyanz/crosspostingbot.git
    cd crosspostingbot
 
-2. **Создайте Телеграм-бот:**
+2. **Create a Telegram Bot:**
 
-   Отправьте сообщение боту https://telegram.me/BotFather и следуйте инструкциям. Вы получите ссылку на вашего бота и его API токен.
+   Send the message to https://telegram.me/BotFather and follow their instructions. You'll get a link to your bot and its API token.
 
-3. **Добавьте бота к Телеграм каналу:**
+3. **Forwarding to Telegram Channels:**
 
-   Добавьте созданного бота как администратора к вашему Телеграм-каналу, в который вы хотите пересылать посты, и дайте ему разрешение на управление сообщениями.
+   Add your bot as an administrator to your Telegram channel and give him rights to manage messages.
 
-4. **Создайте ключ доступа вашей группы Вконтакте:**
+4. **Forwarding to VK Groups:**
 
-   Перейдите в страницу вашей группы, в которую вы хотите пересылать посты. Перейдите в Управление -> Работа с API и создайте Ключ Доступа. Отметьте разрешение к стене сообщества.
+   Go to the page of your vk group to which you want to forward posts. Сreate an Access Key and mark permission to the community wall.
 
-6. **Отредактируйте application.yaml:**
+6. **Edit application.yaml:**
 
-   Отредактируйте crosspostingbot/src/main/resources/application.yaml. Добавьте информацию об API токене вашего бота, ключе доступа вашей группы Вконтакте и об id ваших Telegram-канала и группы Vkontakte.
+   Edit crosspostingbot/src/main/resources/application.yaml. Add information about API token of your bot, access key of your VK group and about IDs of your groups and channels.
 
-7. **Скомпилируйте source код:**
+7. **Compile:**
 
-    Перейдите в директорию crosspostingbot и скомпилируйте проект:
     ```bash
    mvn clean package
-8. **Запустите приложение:**
+8. **Launch the bot:**
     ```bash
    java -jar target/crosspostingbot-0.0.1-SNAPSHOT.jar
    ```
 
-## Использование
+## Usage
 
-После запуска приложения бот будет пересылать посты, которые будет получать из сообщений, в каналы и группы, указанные в application.yaml
-
-## To-Do
-* Подключить PostgreSQL для хранения информации о каналах и группах в базе данных
-* Создать команды для бота для подключения и удаления каналов и групп
-* Добавить кросспостинг медиафайлов
+Once the application is launched, the bot will forward posts it receives from messages to the channels and groups specified in application.yaml
